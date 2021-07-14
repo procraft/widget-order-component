@@ -1,33 +1,184 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> should render and match the snapshot 1`] = `
-<BrowserRouter>
-  <Helmet
-    defaultTitle="React Boilerplate"
-    defer={true}
-    encodeSpecialCharacters={true}
-    htmlAttributes={
+<WidgetOrder
+  courses={Array []}
+  items={
+    Array [
       Object {
-        "lang": "en-US",
-      }
-    }
-    titleTemplate="%s - React Boilerplate"
-  >
-    <meta
-      content="A React Boilerplate application"
-      name="description"
-    />
-  </Helmet>
-  <Switch>
-    <Route
-      component={[Function]}
-      exact={true}
-      path="/"
-    />
-    <Route
-      component={[Function]}
-    />
-  </Switch>
-  <Memo(GlobalStyleComponent) />
-</BrowserRouter>
+        "catalogItem": Object {
+          "id": "dsffew2",
+          "name": "Спроса много не бывает - СБ-VIP, СМБ-1",
+          "sales": Array [],
+          "uid": 1,
+        },
+        "course": Object {
+          "flow": Object {
+            "colorStyle": "lightgreen",
+            "finishesAt": 2021-07-02T15:23:21.049Z,
+            "id": "flow1",
+            "kind": "CONTINUOUS",
+            "name": "SD-1",
+            "startsAt": 2021-07-14T05:10:01.049Z,
+            "uid": 1,
+          },
+          "tariff": Object {
+            "__typename": "CourseTariffPublicCustom",
+            "courseId": 11,
+            "flowBehaviour": "SINGLE",
+            "id": "Q291cnNlVGFyaWZmUHVibGljOjU=",
+            "isActive": true,
+            "marketingBenefits": Array [
+              "-МАТЕРИАЛЫ-",
+              "9 модулей, 55 уроков (20 часов видео, 55 часов практики)",
+              "Презентации по всем урокам",
+              "Запись всех уроков бессрочно",
+              "-ПРЕПОДАВАТЕЛИ-",
+              "Альбина Халитова||#teacher1",
+              "Ирина Царегородцева",
+              "Ирина Чиркова",
+              "-ПРАКТИКА-",
+              "Практические задания на основе вашего бизнеса/продукта или учебного кейса, если продукта нет",
+              "Проверка выполнения с онлайн обратной связью",
+              "НЕТВОРКИНГ-",
+              "Закрытая группа в ТГ для участников курса",
+              "Закрытая группа в ТГ для слушателей пакетов Свой Бизнес всех потоков",
+              "-SLA-",
+              "Проверка по рабочим дням. Все задания сданные до 19-00 по мск проверяются в тот же день. Задания сданные после 19-00 мск обычно проверяются до 14-00 мск следующего дня во все дни кроме понедельников и послепраздничных дней",
+              "-ИНФРАСТРУКТУРА-",
+              "6 месяцев продукта ЗП от Прокрафт",
+              "-ДЛИТЕЛЬНОСТЬ ПРАКТИКИ-",
+              "6 недель",
+            ],
+            "name": "СБ-Лайт",
+            "position": 2,
+            "uid": 5,
+          },
+        },
+        "id": "",
+        "name": "Курс Мясо и Вино",
+        "oldPrice": 79990,
+        "placesLeft": null,
+        "price": 49990,
+        "uid": 1,
+      },
+      Object {
+        "catalogItem": Object {
+          "id": "dsffew3",
+          "name": "Спроса много не бывает - СБ-VIP, СМБ-1",
+          "sales": Array [],
+          "uid": 1,
+        },
+        "course": Object {
+          "flow": Object {
+            "colorStyle": "lightgreen",
+            "finishesAt": 2021-07-02T15:23:21.050Z,
+            "id": "flow1",
+            "kind": "CONTINUOUS",
+            "name": "SD-2",
+            "startsAt": 2021-07-14T05:10:01.050Z,
+            "uid": 1,
+          },
+          "tariff": Object {
+            "__typename": "CourseTariffPublicCustom",
+            "courseId": 11,
+            "flowBehaviour": "CONTINUOUS",
+            "id": "Q291cnNlVGFyaWZmUHVibGljOjU=",
+            "isActive": true,
+            "marketingBenefits": Array [
+              "-МАТЕРИАЛЫ-",
+              "9 модулей, 55 уроков (20 часов видео, 55 часов практики)",
+              "Презентации по всем урокам",
+              "Запись всех уроков бессрочно",
+              "-ПРЕПОДАВАТЕЛИ-",
+              "Альбина Халитова||#teacher1",
+              "Ирина Царегородцева",
+              "Ирина Чиркова",
+              "-ПРАКТИКА-",
+              "Практические задания на основе вашего бизнеса/продукта или учебного кейса, если продукта нет",
+              "Проверка выполнения с онлайн обратной связью",
+              "НЕТВОРКИНГ-",
+              "Закрытая группа в ТГ для участников курса",
+              "Закрытая группа в ТГ для слушателей пакетов Свой Бизнес всех потоков",
+              "-SLA-",
+              "Проверка по рабочим дням. Все задания сданные до 19-00 по мск проверяются в тот же день. Задания сданные после 19-00 мск обычно проверяются до 14-00 мск следующего дня во все дни кроме понедельников и послепраздничных дней",
+              "-ИНФРАСТРУКТУРА-",
+              "6 месяцев продукта ЗП от Прокрафт",
+              "-ДЛИТЕЛЬНОСТЬ ПРАКТИКИ-",
+              "6 недель",
+            ],
+            "name": "СБ-Лайт",
+            "position": 2,
+            "uid": 5,
+          },
+        },
+        "id": "",
+        "name": "Курс Мясо и Вино",
+        "oldPrice": null,
+        "placesLeft": 0,
+        "price": 5990,
+        "uid": 2,
+      },
+      Object {
+        "catalogItem": Object {
+          "id": "dsffew4",
+          "name": "Спроса много не бывает - СБ-VIP, СМБ-1",
+          "sales": Array [],
+          "uid": 1,
+        },
+        "course": Object {
+          "flow": Object {
+            "colorStyle": "lightgreen",
+            "finishesAt": 2021-07-02T15:23:21.050Z,
+            "id": "flow1",
+            "kind": "CONTINUOUS",
+            "name": "SD-3",
+            "startsAt": 2021-07-14T05:10:01.050Z,
+            "uid": 1,
+          },
+          "tariff": Object {
+            "__typename": "CourseTariffPublicCustom",
+            "courseId": 11,
+            "flowBehaviour": "MULTIPLE",
+            "id": "Q291cnNlVGFyaWZmUHVibGljOjU=",
+            "isActive": true,
+            "marketingBenefits": Array [
+              "-МАТЕРИАЛЫ-",
+              "9 модулей, 55 уроков (20 часов видео, 55 часов практики)",
+              "Презентации по всем урокам",
+              "Запись всех уроков бессрочно",
+              "-ПРЕПОДАВАТЕЛИ-",
+              "Альбина Халитова||#teacher1",
+              "Ирина Царегородцева",
+              "Ирина Чиркова",
+              "-ПРАКТИКА-",
+              "Практические задания на основе вашего бизнеса/продукта или учебного кейса, если продукта нет",
+              "Проверка выполнения с онлайн обратной связью",
+              "НЕТВОРКИНГ-",
+              "Закрытая группа в ТГ для участников курса",
+              "Закрытая группа в ТГ для слушателей пакетов Свой Бизнес всех потоков",
+              "-SLA-",
+              "Проверка по рабочим дням. Все задания сданные до 19-00 по мск проверяются в тот же день. Задания сданные после 19-00 мск обычно проверяются до 14-00 мск следующего дня во все дни кроме понедельников и послепраздничных дней",
+              "-ИНФРАСТРУКТУРА-",
+              "6 месяцев продукта ЗП от Прокрафт",
+              "-ДЛИТЕЛЬНОСТЬ ПРАКТИКИ-",
+              "6 недель",
+            ],
+            "name": "СБ-Лайт",
+            "position": 2,
+            "uid": 5,
+          },
+        },
+        "id": "",
+        "name": "Курс Мясо и Вино",
+        "oldPrice": null,
+        "placesLeft": 70,
+        "price": 0,
+        "uid": 3,
+      },
+    ]
+  }
+  materialsLimit={10}
+  orderLink="/order"
+/>
 `;

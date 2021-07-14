@@ -1,21 +1,20 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from 'types';
-import { initialState } from '.';
 import { themes } from '../themes';
 import { isSystemDark } from '../utils';
 
 export const selectTheme = createSelector(
-  [(state: RootState) => state.theme || initialState],
+  [(state: RootState) => state.theme],
   theme => {
-    if (theme.selected === 'system') {
+    if (theme?.selected === 'system') {
       return isSystemDark ? themes.dark : themes.light;
     }
-    return themes[theme.selected];
+    return theme ? themes[theme.selected] : themes.light;
   },
 );
 
 export const selectThemeKey = createSelector(
-  [(state: RootState) => state.theme || initialState],
-  theme => theme.selected,
+  [(state: RootState) => state.theme],
+  theme => theme?.selected,
 );
