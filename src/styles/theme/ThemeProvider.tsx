@@ -3,10 +3,13 @@ import { ThemeProvider as OriginalThemeProvider } from 'styled-components';
 import { selectTheme } from './slice/selectors';
 
 export const ThemeProvider = (props: { children: React.ReactChild }) => {
+  // const theme = selectTheme({
+  //   theme: {
+  //     selected: 'system',
+  //   },
+  // });
   const theme = selectTheme({
-    theme: {
-      selected: 'system',
-    },
+    selected: 'system',
   });
   return (
     <OriginalThemeProvider theme={theme}>
