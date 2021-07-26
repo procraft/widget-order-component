@@ -1,11 +1,11 @@
 {
-  "name": "test-widget-order-component",
-  "version": "1.0.0",
+  "name": "@procraft/widget-order-component",
+  "version": "1.0.3",
   "private": false,
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "build-npm": "PUBLIC_URL=https://unpkg.com/test-widget-order-component@latest/build/ yarn build",
+    "build-npm": "PUBLIC_URL=https://unpkg.com/@procraft/widget-order-component@latest/build/ yarn build",
     "test": "node scripts/test.js",
     "test:generators": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/testing/generators/test-generators.ts",
     "start:prod": "yarn run build && serve -s build",

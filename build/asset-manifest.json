@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "https://unpkg.com/test-widget-order-component@latest/build/static/js/main.chunk.js",
-    "runtime-main.js": "https://unpkg.com/test-widget-order-component@latest/build/static/js/runtime-main.js",
-    "static/js/2.chunk.js": "https://unpkg.com/test-widget-order-component@latest/build/static/js/2.chunk.js",
-    "index.html": "https://unpkg.com/test-widget-order-component@latest/build/index.html",
-    "static/js/2.chunk.js.LICENSE.txt": "https://unpkg.com/test-widget-order-component@latest/build/static/js/2.chunk.js.LICENSE.txt"
+    "main.js": "https://unpkg.com/@procraft/widget-order-component@latest/build/static/js/main.chunk.js",
+    "runtime-main.js": "https://unpkg.com/@procraft/widget-order-component@latest/build/static/js/runtime-main.js",
+    "static/js/2.chunk.js": "https://unpkg.com/@procraft/widget-order-component@latest/build/static/js/2.chunk.js",
+    "index.html": "https://unpkg.com/@procraft/widget-order-component@latest/build/index.html",
+    "static/js/2.chunk.js.LICENSE.txt": "https://unpkg.com/@procraft/widget-order-component@latest/build/static/js/2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.js",
