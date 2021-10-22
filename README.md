@@ -13,6 +13,6 @@
 ## В нужной части страницы вставьте тег с нужными параметрами. Пример
 
 ```html
-<widget-order site_url="https://site_url" course_uid="12" tariff_uid="10" materials_limit="10"></widget-order>
+<widget-order site_url="https://soho.mba" course_uid="11" catalog_item_uid="49"></widget-order>
 
 ```

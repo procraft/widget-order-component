@@ -1540,11 +1540,12 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@procraft/widget-order@2.12.2":
-  version "2.12.2"
-  resolved "https://registry.yarnpkg.com/@procraft/widget-order/-/widget-order-2.12.2.tgz#e9b5721d4d05e10b20440f445941b9c983962d40"
-  integrity sha512-Kl6h1mjzbiJe3CIglgBjb8P9FN4a0AxvM1tM3Pfxs7d19V+GbKrKXEJhxq2dHx4mMHJdq4AZI2jpp5jPVJwSXA==
+"@procraft/widget-order@~2.17.0":
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/@procraft/widget-order/-/widget-order-2.17.1.tgz#6f3fa445ec16b80bb9797be49ed3ae03d87f7f45"
+  integrity sha512-JVputa8pCrzZBqEQCXw4AbmjafuB9/veBJGzIhnh04y5FxN1oiMhnBRP7f02wtjLSEeJXG5QhPJdxuVdMCS+TQ==
   dependencies:
+    moment "^2.29.1"
     react-decliner "^2.0.0"
     react-number-format "^4.4.4"
 
@@ -8637,7 +8638,7 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-moment@2.29.1:
+moment@2.29.1, moment@^2.29.1:
   version "2.29.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
@@ -9491,7 +9492,7 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.2, picomatch@^2.2.3:
+picomatch@^2.0.4, picomatch@^2.2.2, picomatch@^2.2.3:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
@@ -10794,8 +10795,6 @@ readdirp@~3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-3.6.0.tgz#74a370bd857116e245b29cc97340cd431a02a6c7"
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
-  dependencies:
-    picomatch "^2.2.1"
 
 rechoir@^0.6.2:
   version "0.6.2"

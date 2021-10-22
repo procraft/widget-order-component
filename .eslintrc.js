@@ -10,6 +10,12 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': ['error', prettierOptions],
+    'no-console': [
+      2,
+      {
+        allow: ['warn', 'error'],
+      },
+    ],
   },
   overrides: [
     {

@@ -174,8 +174,6 @@ export const testCourseObject: WidgetOrderProps = {
   courses,
 };
 
-console.log('testCourseObject', testCourseObject);
-
 export function App() {
   return (
     <OrderWidget

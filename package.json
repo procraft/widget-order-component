@@ -1,6 +1,6 @@
 {
   "name": "@procraft/widget-order-component",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "private": false,
   "scripts": {
     "start": "node scripts/start.js",
@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
-    "@procraft/widget-order": "2.12.2",
+    "@procraft/widget-order": "~2.17.0",
     "@svgr/webpack": "5.5.0",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.0.2",
