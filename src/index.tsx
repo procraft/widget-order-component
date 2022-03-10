@@ -97,6 +97,8 @@ if (!customElements.get('widget-order')) {
           id
           name
           uid
+          kind
+          subKind
           tariffs {
             id
             uid
@@ -116,10 +118,6 @@ if (!customElements.get('widget-order')) {
             courseId
             courseTariffId
             flowId
-            computed {
-              capacityRemainder
-              __typename
-            }
             priceDetails {
               kind
               changeByTime {
@@ -294,7 +292,6 @@ if (!customElements.get('widget-order')) {
           avatarUrl
           __typename
         }
-      
       `;
 
       /**
@@ -350,13 +347,10 @@ if (!customElements.get('widget-order')) {
               <HelmetProvider>
                 <React.StrictMode>
                   <App
-                    // courses={courses}
                     orderLink={`${site_url}/order`}
                     course={course}
                     materialsLimit={parseInt(materialsLimit) || 10}
                     catalogItem={catalogItem}
-                    // course_uid={parseInt(course_uid)}
-                    // tariff_uid={parseInt(tariff_uid)}
                   />
                 </React.StrictMode>
               </HelmetProvider>
