@@ -62,6 +62,7 @@ if (!customElements.get('widget-order')) {
       // }, 1000);
 
       const site_url = this.getAttribute('site_url');
+      const ratesVisible = this.getAttribute('rates_visible');
       const course_uid = parseInt(this.getAttribute('course_uid') || '');
       // const tariff_uid = this.getAttribute('tariff_uid');
       const catalogItemUid = parseInt(
@@ -92,7 +93,7 @@ if (!customElements.get('widget-order')) {
             __typename
           }
         }
-        
+
         fragment Course_ on CoursePublicCustom {
           id
           name
@@ -144,7 +145,7 @@ if (!customElements.get('widget-order')) {
           }
           __typename
         }
-        
+
         fragment OrderCatalogItemFr on OrderCatalogItem_Fragment {
           ...OrderCatalogItemFields
           master {
@@ -176,7 +177,7 @@ if (!customElements.get('widget-order')) {
           }
           __typename
         }
-        
+
         fragment OrderCatalogItemFields on OrderCatalogItem_Fragment {
           id
           uid
@@ -215,7 +216,7 @@ if (!customElements.get('widget-order')) {
           }
           __typename
         }
-        
+
         fragment OrderItemPromoCode_ on PromoCode_Fragment {
           id
           code
@@ -225,7 +226,7 @@ if (!customElements.get('widget-order')) {
           isActive
           __typename
         }
-        
+
         fragment sale on SaleCustom {
           ...saleFields
           benefitItems {
@@ -257,7 +258,7 @@ if (!customElements.get('widget-order')) {
           }
           __typename
         }
-        
+
         fragment saleFields on SaleCustom {
           id
           uid
@@ -268,7 +269,7 @@ if (!customElements.get('widget-order')) {
           benefitUnit
           __typename
         }
-        
+
         fragment orderReview on OrderReviewCustom {
           id
           uid
@@ -282,7 +283,7 @@ if (!customElements.get('widget-order')) {
           }
           __typename
         }
-        
+
         fragment userProfileNoNesting on UserProfileCustom {
           id
           uid
@@ -351,6 +352,7 @@ if (!customElements.get('widget-order')) {
                     course={course}
                     materialsLimit={parseInt(materialsLimit) || 10}
                     catalogItem={catalogItem}
+                    ratesVisible={Boolean(ratesVisible)}
                   />
                 </React.StrictMode>
               </HelmetProvider>
