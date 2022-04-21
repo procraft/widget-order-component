@@ -277,10 +277,7 @@ if (!customElements.get('widget-order')) {
           meetExpectation
           rating
           timeCreated
-          client {
-            ...userProfileNoNesting
-            __typename
-          }
+          client
           __typename
         }
 
