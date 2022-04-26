@@ -233,6 +233,9 @@
       "react-app"
     ]
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "description": "",
   "author": "Fi1osof",
   "license": "ISC"
