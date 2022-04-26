@@ -280,16 +280,6 @@ if (!customElements.get('widget-order')) {
           client
           __typename
         }
-
-        fragment userProfileNoNesting on UserProfileCustom {
-          id
-          uid
-          login
-          name
-          shortName
-          avatarUrl
-          __typename
-        }
       `;
 
       /**
