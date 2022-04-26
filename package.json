@@ -19,7 +19,10 @@
     "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
     "cleanAndSetup": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/clean.ts",
     "prettify": "prettier --write",
-    "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js"
+    "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js",
+    "preversion": "yarn lint && yarn types && yarn clean && yarn build-npm",
+    "postversion": "yarn run npm publish",
+    "postpublish": "git push origin --all; git push origin --tags"
   },
   "dependencies": {
     "@babel/core": "7.12.3",

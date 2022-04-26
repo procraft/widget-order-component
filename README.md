@@ -1,3 +1,6 @@
+## Deploy
+Just run `npm version minor|patch`
+
 ## Пример использования
 
 ### Добавьте на страницу код
