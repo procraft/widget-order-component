@@ -129,7 +129,9 @@
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "5.1.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "npm": "8.10.0"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
