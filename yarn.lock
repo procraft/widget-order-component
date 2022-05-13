@@ -1579,11 +1579,12 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@procraft/widget-order@~2.21.13":
-  version "2.21.13"
-  resolved "https://registry.yarnpkg.com/@procraft/widget-order/-/widget-order-2.21.13.tgz#c9949a07796e145497417762b41fcf0224054455"
-  integrity sha512-dsovJCwA3GnJuxxrroBSPVON4ryY+5keJnm0vwemaOHjTqXEImwkYnsElC/THPr3Qk7JKy1c2cqKXgFJKm7grw==
+"@procraft/widget-order@~2.22.9":
+  version "2.22.10"
+  resolved "https://registry.yarnpkg.com/@procraft/widget-order/-/widget-order-2.22.10.tgz#bfe1cb23296c85f2aceb2ca0286fc0db7ab471f8"
+  integrity sha512-y6FUp86rxm1BMY/I66vNV/RaxSfZyqJfsuqJt5r3MOiueB3W5Gcty8SU8PTH66UVlpGL6Niazk2z4pd8yaKvWQ==
   dependencies:
+    classnames "^2.3.1"
     moment "^2.29.1"
     react-decliner "^2.0.0"
     react-number-format "^4.4.4"
@@ -3760,6 +3761,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 clean-css@^4.2.3:
   version "4.2.3"
@@ -9548,7 +9554,7 @@ picomatch@^2.0.4, picomatch@^2.2.2, picomatch@^2.2.3:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
 
-picomatch@^2.3.0:
+picomatch@^2.2.1, picomatch@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
