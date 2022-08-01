@@ -141,6 +141,7 @@ if (!customElements.get('widget-order')) {
               }
               __typename
             }
+            marketingBenefitsComputed
             __typename
           }
           __typename
