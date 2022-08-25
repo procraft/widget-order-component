@@ -221,7 +221,8 @@ if (!customElements.get('widget-order')) {
         fragment OrderItemPromoCode_ on PromoCode_Fragment {
           id
           code
-          discountPercent
+          value
+          unit
           activeFrom
           activeTill
           isActive
