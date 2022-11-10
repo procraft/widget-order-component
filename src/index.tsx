@@ -100,6 +100,15 @@ if (!customElements.get('widget-order')) {
           uid
           kind
           subKind
+          subKindLabel {
+            valueNominative
+            valueGenitive
+            valueAccusative
+            valueDative
+            valueInstrumental
+            valuePrepositional
+            gender
+          }
           tariffs {
             id
             uid
