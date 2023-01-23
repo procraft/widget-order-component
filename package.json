@@ -1,6 +1,6 @@
 {
   "name": "@procraft/widget-order-component",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "private": false,
   "scripts": {
     "start": "node scripts/start.js",
