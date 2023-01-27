@@ -108,6 +108,7 @@ if (!customElements.get('widget-order')) {
             valueInstrumental
             valuePrepositional
             gender
+            createdAt
           }
           tariffs {
             id
@@ -221,6 +222,7 @@ if (!customElements.get('widget-order')) {
             extraWork
             extraWorkPercentage
             availableCount
+            isDisplayReminder
             type
             __typename
           }
