@@ -222,7 +222,7 @@ if (!customElements.get('widget-order')) {
             extraWork
             extraWorkPercentage
             availableCount
-            isDisplayReminder
+            isDisplayRemainder
             type
             __typename
           }
