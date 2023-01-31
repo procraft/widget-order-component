@@ -162,6 +162,7 @@ if (!customElements.get('widget-order')) {
           master {
             id
             uid
+            currency
             __typename
           }
           course {
