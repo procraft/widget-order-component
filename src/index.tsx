@@ -1,74 +1,247 @@
-/**
- * index.tsx
- *
- * This is the entry file for the application, only setup and boilerplate
- * code.
- */
-
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
+import FontFaceObserver from 'fontfaceobserver';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import FontFaceObserver from 'fontfaceobserver';
-
-// Use consistent styling
-// import 'sanitize.css/sanitize.css';
 
 import { App } from 'app';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import { ThemeProvider } from 'styles/theme/ThemeProvider';
 import { CourseFragment } from '@procraft/widget-order/dist/interfaces/CourseFragment';
+import { ThemeProvider } from 'styles/theme/ThemeProvider';
 
-// Observe loading of Inter (to remove 'Inter', remove the <link> tag in
-// the index.html file and this observer)
+const query = `
+  query courses($code: String!) {
+    courses(code: $code) {
+      ...Course_
+      __typename
+    }
+  }
+
+  fragment Course_ on CoursePublicCustom {
+    id
+    name
+    uid
+    kind
+    subKind
+    subKindLabel {
+      valueNominative
+      valueGenitive
+      valueAccusative
+      valueDative
+      valueInstrumental
+      valuePrepositional
+      gender
+      createdAt
+    }
+    tariffs {
+      id
+      uid
+      name
+      courseId
+      position
+      isActive
+      flowBehaviour
+      marketingBenefits
+      __typename
+    }
+    catalogItems {
+      ...OrderCatalogItemFr
+      __typename
+    }
+    tariffPerFlowDataItems {
+      courseId
+      courseTariffId
+      flowId
+      priceDetails {
+        kind
+        changeByTime {
+          items {
+            priceMarketing
+            priceReal
+            startsAt
+            finishesAt
+            __typename
+          }
+          __typename
+        }
+        __typename
+      }
+      prolongation {
+        items {
+          price
+          periodInDays
+          __typename
+        }
+        __typename
+      }
+      marketingBenefitsComputed
+      __typename
+    }
+    __typename
+  }
+
+  fragment OrderCatalogItemFr on OrderCatalogItem_Fragment {
+    ...OrderCatalogItemFields
+    master {
+      id
+      uid
+      currency
+      __typename
+    }
+    course {
+      courseId
+      flowId
+      tariffId
+      prolongationDays
+      __typename
+    }
+    sales {
+      ...sale
+      __typename
+    }
+    reviewsCount
+    reviews {
+      edges {
+        node {
+          ...orderReview
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+
+  fragment OrderCatalogItemFields on OrderCatalogItem_Fragment {
+    id
+    uid
+    name
+    title
+    unitPrice
+    unitPriceOriginal
+    promoCode(code: $code) {
+      ...OrderItemPromoCode_
+      __typename
+    }
+    priceWithPromoCode(code: $code)
+    course {
+      courseId
+      flowId
+      tariffId
+      __typename
+    }
+    fieldValues {
+      uid
+      fieldId
+      fieldName
+      optionName
+      optionValue
+      isSelected
+      isDefault
+      groupName
+      extraPay
+      extraPayOriginal
+      extraPayPercentage
+      extraWork
+      extraWorkPercentage
+      availableCount
+      isDisplayRemainder
+      type
+      __typename
+    }
+    __typename
+  }
+
+  fragment OrderItemPromoCode_ on PromoCode_Fragment {
+    id
+    code
+    value
+    unit
+    activeFrom
+    activeTill
+    isActive
+    __typename
+  }
+
+  fragment sale on SaleCustom {
+    ...saleFields
+    benefitItems {
+      ...OrderCatalogItemFields
+      __typename
+    }
+    orderCondition {
+      kind
+      data {
+        __typename
+        ... on ItemOrderConditionData {
+          shouldContainAll
+          catalogItems {
+            ...OrderCatalogItemFields
+            sales {
+              ...saleFields
+              benefitItems {
+                ...OrderCatalogItemFields
+                __typename
+              }
+              __typename
+            }
+            __typename
+          }
+          __typename
+        }
+      }
+      __typename
+    }
+    __typename
+  }
+
+  fragment saleFields on SaleCustom {
+    id
+    uid
+    name
+    isActive
+    benefitKind
+    benefitAmount
+    benefitUnit
+    __typename
+  }
+
+  fragment orderReview on OrderReviewCustom {
+    id
+    uid
+    text
+    meetExpectation
+    rating
+    timeCreated
+    client
+    __typename
+  }
+`;
+
 const openSansObserver = new FontFaceObserver('Inter', {});
 
-// When Inter is loaded, add a font-family using Inter to the body
 openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
 
-// const MOUNT_NODE = document.getElementById('root');
-
-// MOUNT_NODE &&
-//   ReactDOM.render(
-//     <ThemeProvider>
-//       <HelmetProvider>
-//         <React.StrictMode>
-//           <App />
-//         </React.StrictMode>
-//       </HelmetProvider>
-//     </ThemeProvider>,
-//     MOUNT_NODE,
-//   );
-
 if (!customElements.get('widget-order')) {
   class WidgetOrderComponent extends HTMLElement {
-    // constructor() {
-    //   // Always call super first in constructor
-    //   super();
-
-    //   // write element functionality in here
-    // }
-
     connectedCallback() {
-      // this.innerHTML = `<h1>Hello world</h1>`;
-
-      // setTimeout(() => {
-      //   this.innerHTML = `<h2>Hello world!</h2>`;
-      // }, 1000);
-
       const site_url = this.getAttribute('site_url');
       const ratesVisible = this.getAttribute('rates_visible');
       const course_uid = parseInt(this.getAttribute('course_uid') || '');
-      // const tariff_uid = this.getAttribute('tariff_uid');
       const catalogItemUid = parseInt(
-        this.getAttribute('catalog_item_uid') || '',
+        this.getAttribute('catalog_item_uid') ?? '',
       );
       const materialsLimit = this.getAttribute('materials_limit') || '';
+
+      const titleColor = this.getAttribute('title_color');
+      const mainBgColor = this.getAttribute('main_bg_color');
+      const infoBgColor = this.getAttribute('info_bg_color');
 
       if (!site_url) {
         throw new Error('Не указан параметр site_url');
@@ -78,238 +251,15 @@ if (!customElements.get('widget-order')) {
         throw new Error('Не указан параметр course_uid');
       }
 
-      // if (!tariff_uid) {
-      //   throw new Error('Не указан параметр tariff_uid');
-      // }
-
       if (!catalogItemUid) {
         throw new Error('Не указан параметр catalog_item_uid');
       }
-
-      const query = `
-        query courses($code: String!) {
-          courses(code: $code) {
-            ...Course_
-            __typename
-          }
-        }
-
-        fragment Course_ on CoursePublicCustom {
-          id
-          name
-          uid
-          kind
-          subKind
-          subKindLabel {
-            valueNominative
-            valueGenitive
-            valueAccusative
-            valueDative
-            valueInstrumental
-            valuePrepositional
-            gender
-            createdAt
-          }
-          tariffs {
-            id
-            uid
-            name
-            courseId
-            position
-            isActive
-            flowBehaviour
-            marketingBenefits
-            __typename
-          }
-          catalogItems {
-            ...OrderCatalogItemFr
-            __typename
-          }
-          tariffPerFlowDataItems {
-            courseId
-            courseTariffId
-            flowId
-            priceDetails {
-              kind
-              changeByTime {
-                items {
-                  priceMarketing
-                  priceReal
-                  startsAt
-                  finishesAt
-                  __typename
-                }
-                __typename
-              }
-              __typename
-            }
-            prolongation {
-              items {
-                price
-                periodInDays
-                __typename
-              }
-              __typename
-            }
-            marketingBenefitsComputed
-            __typename
-          }
-          __typename
-        }
-
-        fragment OrderCatalogItemFr on OrderCatalogItem_Fragment {
-          ...OrderCatalogItemFields
-          master {
-            id
-            uid
-            currency
-            __typename
-          }
-          course {
-            courseId
-            flowId
-            tariffId
-            prolongationDays
-            __typename
-          }
-          sales {
-            ...sale
-            __typename
-          }
-          reviewsCount
-          reviews {
-            edges {
-              node {
-                ...orderReview
-                __typename
-              }
-              __typename
-            }
-            __typename
-          }
-          __typename
-        }
-
-        fragment OrderCatalogItemFields on OrderCatalogItem_Fragment {
-          id
-          uid
-          name
-          title
-          unitPrice
-          unitPriceOriginal
-          promoCode(code: $code) {
-            ...OrderItemPromoCode_
-            __typename
-          }
-          priceWithPromoCode(code: $code)
-          course {
-            courseId
-            flowId
-            tariffId
-            __typename
-          }
-          fieldValues {
-            uid
-            fieldId
-            fieldName
-            optionName
-            optionValue
-            isSelected
-            isDefault
-            groupName
-            extraPay
-            extraPayOriginal
-            extraPayPercentage
-            extraWork
-            extraWorkPercentage
-            availableCount
-            isDisplayRemainder
-            type
-            __typename
-          }
-          __typename
-        }
-
-        fragment OrderItemPromoCode_ on PromoCode_Fragment {
-          id
-          code
-          value
-          unit
-          activeFrom
-          activeTill
-          isActive
-          __typename
-        }
-
-        fragment sale on SaleCustom {
-          ...saleFields
-          benefitItems {
-            ...OrderCatalogItemFields
-            __typename
-          }
-          orderCondition {
-            kind
-            data {
-              __typename
-              ... on ItemOrderConditionData {
-                shouldContainAll
-                catalogItems {
-                  ...OrderCatalogItemFields
-                  sales {
-                    ...saleFields
-                    benefitItems {
-                      ...OrderCatalogItemFields
-                      __typename
-                    }
-                    __typename
-                  }
-                  __typename
-                }
-                __typename
-              }
-            }
-            __typename
-          }
-          __typename
-        }
-
-        fragment saleFields on SaleCustom {
-          id
-          uid
-          name
-          isActive
-          benefitKind
-          benefitAmount
-          benefitUnit
-          __typename
-        }
-
-        fragment orderReview on OrderReviewCustom {
-          id
-          uid
-          text
-          meetExpectation
-          rating
-          timeCreated
-          client
-          __typename
-        }
-      `;
 
       /**
        * Делаем через задержку, так как реакт ругается на расхождение верстки
        * при вызове hydrate и тогда не отрисовывается компонент
        */
       setTimeout(() => {
-        // const node = document.createElement('h2');
-
-        // node.innerText = 'sdfsdfsdf';
-
-        // this.appendChild(node);
-
-        /**
-         * Получаем текущие курсы
-         */
         fetch(`${site_url}/api/`, {
           headers: {
             'content-type': 'application/json',
@@ -354,6 +304,11 @@ if (!customElements.get('widget-order')) {
                     materialsLimit={parseInt(materialsLimit) || 10}
                     catalogItem={catalogItem}
                     ratesVisible={Boolean(ratesVisible)}
+                    style={{
+                      titleColor,
+                      mainBgColor,
+                      infoBgColor,
+                    }}
                   />
                 </React.StrictMode>
               </HelmetProvider>
