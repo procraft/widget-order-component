@@ -239,13 +239,15 @@ if (!customElements.get('widget-order')) {
       );
       const materialsLimit = this.getAttribute('materials_limit') || '';
 
-      const titleBg = this.getAttribute('title_bg');
-      const titleText = this.getAttribute('title_text');
-      const coloredText = this.getAttribute('colored_text');
-      const contentBg = this.getAttribute('content_bg');
-      const contentText = this.getAttribute('content_text');
-      const extraBg = this.getAttribute('extra_bg');
-      const mainBg = this.getAttribute('main_bg');
+      const colors = {
+        titleBg: this.getAttribute('title_bg'),
+        titleText: this.getAttribute('title_text'),
+        coloredText: this.getAttribute('colored_text'),
+        contentBg: this.getAttribute('content_bg'),
+        contentText: this.getAttribute('content_text'),
+        extraBg: this.getAttribute('extra_bg'),
+        mainBg: this.getAttribute('main_bg'),
+      };
 
       if (!site_url) {
         throw new Error('Не указан параметр site_url');
@@ -309,15 +311,7 @@ if (!customElements.get('widget-order')) {
                     catalogItem={catalogItem}
                     ratesVisible={Boolean(ratesVisible)}
                     style={{
-                      colors: {
-                        titleBg,
-                        titleText,
-                        coloredText,
-                        contentBg,
-                        contentText,
-                        extraBg,
-                        mainBg,
-                      },
+                      colors,
                     }}
                   />
                 </React.StrictMode>
