@@ -193,6 +193,11 @@ const query = `
           }
           __typename
         }
+        ... on PriceOrderConditionData {
+          kind
+          from
+          to
+        }
       }
       __typename
     }
