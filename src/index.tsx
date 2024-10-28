@@ -96,6 +96,21 @@ const query = `
       flowId
       tariffId
       prolongationDays
+      courseMeta {
+      courseName
+      courseKind
+      courseSubKind
+      courseSubKindLabel {
+        valueNominative
+        valueGenitive
+        valueAccusative
+        valueDative
+        valueInstrumental
+        valuePrepositional
+        gender
+        createdAt
+      }
+      webinarStartsAt
       __typename
     }
     sales {

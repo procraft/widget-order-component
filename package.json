@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
-    "@procraft/widget-order": "2.30.13",
+    "@procraft/widget-order": "2.30.14",
     "@svgr/webpack": "5.5.0",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.0.2",
