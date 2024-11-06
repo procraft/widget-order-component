@@ -97,20 +97,21 @@ const query = `
       tariffId
       prolongationDays
       courseMeta {
-      courseName
-      courseKind
-      courseSubKind
-      courseSubKindLabel {
-        valueNominative
-        valueGenitive
-        valueAccusative
-        valueDative
-        valueInstrumental
-        valuePrepositional
-        gender
-        createdAt
+        courseName
+        courseKind
+        courseSubKind
+        courseSubKindLabel {
+          valueNominative
+          valueGenitive
+          valueAccusative
+          valueDative
+          valueInstrumental
+          valuePrepositional
+          gender
+          createdAt
+        }
+        webinarStartsAt
       }
-      webinarStartsAt
       __typename
     }
     sales {
