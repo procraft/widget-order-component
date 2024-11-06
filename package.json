@@ -25,7 +25,7 @@
     "postpublish": "git push origin --all; git push origin --tags"
   },
   "dependencies": {
-    "@babel/core": "7.12.3",
+    "@babel/core": "7.16.12",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@procraft/widget-order": "2.30.15",
     "@svgr/webpack": "5.5.0",
