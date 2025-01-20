@@ -236,6 +236,7 @@ const query = `
     uid
     text
     meetExpectation
+    reply
     rating
     timeCreated
     client
