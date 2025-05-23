@@ -166,6 +166,7 @@ const query = `
       extraWorkPercentage
       availableCount
       isDisplayRemainder
+      parents
       type
       __typename
     }
