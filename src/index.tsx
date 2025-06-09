@@ -111,6 +111,7 @@ const query = `
           createdAt
         }
         webinarStartsAt
+        webinarHasPassed
       }
       __typename
     }
