@@ -307,13 +307,13 @@ if (!customElements.get('widget-order')) {
           const courses: CourseFragment[] = response.data?.courses || [];
 
           if (!courses?.length) {
-            throw new Error('Не были получены данные');
+            throw new Error(`Не были получены данные для курса ${course_uid}`);
           }
 
           const course = courses.find(n => n.uid === course_uid);
 
           if (!course) {
-            throw new Error('Не был получен учебный курс');
+            throw new Error(`Не был получен учебный курс ${course_uid}`);
           }
 
           const catalogItem = course.catalogItems?.find(
@@ -321,7 +321,9 @@ if (!customElements.get('widget-order')) {
           );
 
           if (!catalogItem) {
-            throw new Error('Не был получен элемент каталога');
+            throw new Error(
+              `Не найден элемент каталога ${catalogItemUid} для курса ${course_uid}`,
+            );
           }
 
           ReactDOM.render(
