@@ -25,5 +25,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn
+    # webpack 4 из CRA не работает с OpenSSL 3, то есть на Node >= 17, без legacy-провайдера.
+    # На Node 14 и 16 такого флага не существует и процесс падает с "bad option", поэтому он
+    # выставляется только для 18.x. Пустая строка в NODE_OPTIONS безвредна.
     - run: yarn build
+      env:
+        NODE_OPTIONS: ${{ startsWith(matrix.node-version, '18.') && '--openssl-legacy-provider' || '' }}
 #    - run: yarn test:all --updateSnapshot

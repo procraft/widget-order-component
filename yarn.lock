@@ -9800,15 +9800,10 @@ node-plop@0.26.2, node-plop@~0.26.2:
     mkdirp "^0.5.1"
     resolve "^1.12.0"
 
-node-releases@^1.1.61, node-releases@^1.1.71:
-  version "1.1.73"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.1.73.tgz#dd4e81ddd5277ff846b80b52bb40c49edf7a7b20"
-  integrity sha512-uW7fodD6pyW2FZNZnp/Z3hvWKeEW1Y8R1+1CnErE8cXFXzl5blBOoVB41CvMer6P6Q0S5FXDwcHgFd1Wj0U9zg==
-
-node-releases@^2.0.55:
-  version "2.0.56"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.56.tgz#fff6a4093fe05d994a2a5e415eee5fcef874e6dc"
-  integrity sha512-x0InOIyzgdk+eyaWaRJFH5snEtiImgBgblZ2CyPrLmqqcuMQkEvcDPHbzqbD8eDsSeJbVOjn+crzyzHaM4D+/A==
+node-releases@2.0.19, node-releases@^1.1.61, node-releases@^1.1.71, node-releases@^2.0.55:
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.19.tgz#9e445a52950951ec4d177d843af370b411caf314"
+  integrity sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==
 
 nopt@^5.0.0:
   version "5.0.0"
