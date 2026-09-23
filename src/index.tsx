@@ -91,6 +91,14 @@ const query = `
       currency
       __typename
     }
+    org {
+      displayCurrencies {
+        currency
+        rate
+        __typename
+      }
+      __typename
+    }
     course {
       courseId
       flowId
