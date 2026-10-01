@@ -21,7 +21,7 @@
     "prettify": "prettier --write",
     "extract-messages": "i18next-scanner --config=internals/extractMessages/i18next-scanner.config.js",
     "preversion": "yarn lint && yarn types && yarn clean && yarn build-npm",
-    "postversion": "yarn run npm publish",
+    "postversion": "npm publish",
     "postpublish": "git push origin --all; git push origin --tags"
   },
   "dependencies": {
@@ -132,9 +132,7 @@
   "resolutions": {
     "node-releases": "2.0.19"
   },
-  "devDependencies": {
-    "npm": "8.10.0"
-  },
+  "devDependencies": {},
   "eslintConfig": {
     "extends": "react-app"
   },
