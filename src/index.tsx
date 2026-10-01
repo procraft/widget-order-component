@@ -11,15 +11,9 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { CourseFragment } from '@procraft/widget-order/dist/interfaces/CourseFragment';
 import { ThemeProvider } from 'styles/theme/ThemeProvider';
+import { showSkeleton } from 'utils/skeleton';
 
-const query = `
-  query courses($code: String!) {
-    courses(code: $code) {
-      ...Course_
-      __typename
-    }
-  }
-
+const fragments = `
   fragment Course_ on CoursePublicCustom {
     id
     name
@@ -254,6 +248,78 @@ const query = `
   }
 `;
 
+const courseQuery = `
+  query course($id: Int!, $code: String!) {
+    course(id: $id, code: $code) {
+      ...Course_
+      __typename
+    }
+  }
+  ${fragments}
+`;
+
+/** Весь каталог школы: прежний путь, остаётся запасным, если запрос одного курса не сработал */
+const coursesQuery = `
+  query courses($code: String!) {
+    courses(code: $code) {
+      ...Course_
+      __typename
+    }
+  }
+  ${fragments}
+`;
+
+const postQuery = (siteUrl: string, query: string, variables: object) =>
+  fetch(`${siteUrl}/api/`, {
+    headers: {
+      'content-type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify({ query, variables }),
+  }).then(r => r.json());
+
+const loadCourseFromCatalog = (siteUrl: string, courseUid: number) =>
+  postQuery(siteUrl, coursesQuery, { code: '' }).then(response => {
+    const courses: CourseFragment[] = response.data?.courses || [];
+
+    if (!courses?.length) {
+      throw new Error(`Не были получены данные для курса ${courseUid}`);
+    }
+
+    return courses.find(n => n.uid === courseUid);
+  });
+
+/**
+ * Курс по uid одним запросом. Раньше виджет получал весь каталог школы и искал курс у себя:
+ * у школы с сотнями курсов это секунды ответа и мегабайты JSON ради одной карточки.
+ * Если сайт ответил ошибкой или не нашёл курс — прежний путь через весь каталог,
+ * чтобы поведение и сообщения об ошибках не изменились.
+ */
+const loadCourse = (siteUrl: string, courseUid: number) =>
+  postQuery(siteUrl, courseQuery, { id: courseUid, code: '' })
+    .then(response => {
+      const course: CourseFragment | null = response.data?.course ?? null;
+      return !response.errors?.length && course?.uid === courseUid
+        ? course
+        : loadCourseFromCatalog(siteUrl, courseUid);
+    })
+    .catch(() => loadCourseFromCatalog(siteUrl, courseUid));
+
+/** Несколько виджетов одного курса на странице делят один запрос */
+const courseRequests = new Map<string, Promise<CourseFragment | undefined>>();
+
+const getCourse = (siteUrl: string, courseUid: number) => {
+  const key = `${siteUrl}|${courseUid}`;
+  let request = courseRequests.get(key);
+  if (!request) {
+    request = loadCourse(siteUrl, courseUid);
+    // Неудачный запрос не кешируем: следующий виджет попробует заново
+    request.catch(() => courseRequests.delete(key));
+    courseRequests.set(key, request);
+  }
+  return request;
+};
+
 const openSansObserver = new FontFaceObserver('Inter', {});
 
 openSansObserver.load().then(() => {
@@ -293,67 +359,57 @@ if (!customElements.get('widget-order')) {
         throw new Error('Не указан параметр catalog_item_uid');
       }
 
+      const hideSkeleton = showSkeleton(this, colors);
+
       /**
        * Делаем через задержку, так как реакт ругается на расхождение верстки
        * при вызове hydrate и тогда не отрисовывается компонент
        */
       setTimeout(() => {
-        fetch(`${site_url}/api/`, {
-          headers: {
-            'content-type': 'application/json',
-          },
-          method: 'POST',
-          body: JSON.stringify({
-            query,
-            variables: {
-              code: '',
-            },
-          }),
-        }).then(async r => {
-          const response = await r.json();
+        getCourse(site_url, course_uid).then(
+          course => {
+            // При ошибке место виджета остаётся пустым, как и до появления заглушки
+            hideSkeleton();
 
-          const courses: CourseFragment[] = response.data?.courses || [];
+            if (!course) {
+              throw new Error(`Не был получен учебный курс ${course_uid}`);
+            }
 
-          if (!courses?.length) {
-            throw new Error(`Не были получены данные для курса ${course_uid}`);
-          }
-
-          const course = courses.find(n => n.uid === course_uid);
-
-          if (!course) {
-            throw new Error(`Не был получен учебный курс ${course_uid}`);
-          }
-
-          const catalogItem = course.catalogItems?.find(
-            n => n.uid === catalogItemUid,
-          );
-
-          if (!catalogItem) {
-            throw new Error(
-              `Не найден элемент каталога ${catalogItemUid} для курса ${course_uid}`,
+            const catalogItem = course.catalogItems?.find(
+              n => n.uid === catalogItemUid,
             );
-          }
 
-          ReactDOM.render(
-            <ThemeProvider>
-              <HelmetProvider>
-                <React.StrictMode>
-                  <App
-                    orderLink={`${site_url}/order`}
-                    course={course}
-                    materialsLimit={parseInt(materialsLimit) || 10}
-                    catalogItem={catalogItem}
-                    ratesVisible={Boolean(ratesVisible)}
-                    style={{
-                      colors,
-                    }}
-                  />
-                </React.StrictMode>
-              </HelmetProvider>
-            </ThemeProvider>,
-            this,
-          );
-        });
+            if (!catalogItem) {
+              throw new Error(
+                `Не найден элемент каталога ${catalogItemUid} для курса ${course_uid}`,
+              );
+            }
+
+            ReactDOM.render(
+              <ThemeProvider>
+                <HelmetProvider>
+                  <React.StrictMode>
+                    <App
+                      orderLink={`${site_url}/order`}
+                      course={course}
+                      materialsLimit={parseInt(materialsLimit) || 10}
+                      catalogItem={catalogItem}
+                      ratesVisible={Boolean(ratesVisible)}
+                      style={{
+                        colors,
+                      }}
+                    />
+                  </React.StrictMode>
+                </HelmetProvider>
+              </ThemeProvider>,
+              this,
+            );
+          },
+          error => {
+            hideSkeleton();
+            throw error;
+          },
+        );
       }, 100);
     }
   }
